@@ -58,6 +58,7 @@ public class LearningActivity extends AppCompatActivity{
     {
         if (!playing)
         {
+            playing = true;
             play.setImageResource(android.R.drawable.ic_media_pause);
 
             if (result == TextToSpeech.LANG_NOT_SUPPORTED || result == TextToSpeech.LANG_MISSING_DATA) {
@@ -74,10 +75,10 @@ public class LearningActivity extends AppCompatActivity{
                 public void run() {
                     while (tts.isSpeaking())
                         SystemClock.sleep(100);
-                        playing = false;
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                    playing = false;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
                                 play.setImageResource(android.R.drawable.ic_media_play);
                             }
                         });
@@ -87,7 +88,7 @@ public class LearningActivity extends AppCompatActivity{
 
 
         }
-        if (playing)
+        else
         {
             if (tts != null)
             {
